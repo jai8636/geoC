@@ -69,23 +69,25 @@ async function getCoordInfo() {
 }
 
 window.addEventListener('load', async function () {
-    let element = document.querySelector('[class^="styles_columnTwo___"]');
+    let element = document.querySelector('[class^="styles_columnTwo"]');
 
     while (!element) {
         await new Promise(resolve => setTimeout(resolve, 500));
-        element = document.querySelector('[class^="styles_columnTwo___"]');
+        element = document.querySelector('[class^="styles_columnTwo"]');
     }
 
     if (element) {
-        element.innerHTML += `<div class='styles_control__zEkd0'><span class='tooltip_reference__qDBCi'><button id="tellLocation" class='styles_hudButton__jPUdv styles_sizeSmall__xGh28 styles_roundBoth__VjjSQ' data-qa='return-to-start'><img alt='Return to start' loading='lazy' width='22' height='24' decoding='async' data-nimg='1' style="filter: invert(1)" class='styles_iconReturnToStart__PT25v' src='${chrome.runtime.getURL('assets/view.png')}' style='color: transparent;'></button><div class='tooltip_tooltip__CHe2s tooltip_right__07M2V tooltip_roundnessXS__khTx4 tooltip_hideOnXs__hsJpx' style='top: 50%; transform: translateY(-50%) scale(0); opacity: 0; visibility: hidden;'>Return to start (R)<div class='tooltip_arrow__Rz_22'></div></div></span></div>`;
-        element.innerHTML += `<div class='styles_control__zEkd0'><span class='tooltip_reference__qDBCi'><button id="showLocation" class='styles_hudButton__jPUdv styles_sizeSmall__xGh28 styles_roundBoth__VjjSQ' data-qa='return-to-start'><img alt='Return to start' loading='lazy' width='22' height='24' decoding='async' data-nimg='1' style="filter: invert(1)" class='styles_iconReturnToStart__PT25v' src='${chrome.runtime.getURL('assets/pin.png')}' style='color: transparent;'></button><div class='tooltip_tooltip__CHe2s tooltip_right__07M2V tooltip_roundnessXS__khTx4 tooltip_hideOnXs__hsJpx' style='top: 50%; transform: translateY(-50%) scale(0); opacity: 0; visibility: hidden;'>Return to start (R)<div class='tooltip_arrow__Rz_22'></div></div></span></div>`;
+        element.innerHTML += `<div class="styles_control__Pa4Ta"><span class="tooltip_reference__CwDbn"><img id="tellLocation" style="width:24px;height:24px; background: #c6c6c6; filter: invert(1);" class="styles_hudButton__kzfFK styles_sizeSmall__O7Bw_ styles_roundBoth__hcuEN" data-qa="set-checkpoint" src='${chrome.runtime.getURL('assets/view.png')}' style="color: transparent;"></button><div class="tooltip_tooltip__3D6bz tooltip_right__wLi_G tooltip_roundnessXS__BGhWu tooltip_hideOnXs__S3erz" style="top: 50%; transform: translateY(-50%) scale(0); opacity: 0; visibility: hidden;">Alert Position<div class="tooltip_arrow__LJ1of"></div></div></span></div>`;
+        element.innerHTML += `<div class="styles_control__Pa4Ta"><span class="tooltip_reference__CwDbn"><img id="showLocation" style="width:24px;height:24px; background: #c6c6c6; filter: invert(1);" class="styles_hudButton__kzfFK styles_sizeSmall__O7Bw_ styles_roundBoth__hcuEN" data-qa="set-checkpoint" src='${chrome.runtime.getURL('assets/pin.png')}' style="color: transparent;"></button><div class="tooltip_tooltip__3D6bz tooltip_right__wLi_G tooltip_roundnessXS__BGhWu tooltip_hideOnXs__S3erz" style="top: 50%; transform: translateY(-50%) scale(0); opacity: 0; visibility: hidden;">Show Position<div class="tooltip_arrow__LJ1of"></div></div></span></div>`;
     }
 
-    document.getElementById('tellLocation').addEventListener('click', async function () {
+    document.getElementById('tellLocation').addEventListener('click', async function (e) {
+        e.preventDefault();
         tellLocation();
     });
 
-    document.getElementById('showLocation').addEventListener('click', async function () {
+    document.getElementById('showLocation').addEventListener('click', async function (e) {
+        e.preventDefault();
         showLocation();
     });
 });
